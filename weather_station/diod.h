@@ -1,10 +1,3 @@
-/* Libraries */
-/* Header Files */
-/* Constants */
-/* Variables */
-/* External Methods */
-/* Methods */
-
 #ifndef DIOD_H_
 #define DIOD_H_
 
