@@ -224,14 +224,14 @@ void decrement_time_param(){
 }
 
 void display_time(){
+	clear_display();
+	
 	if(!time_set){
 		write_str_display("Time not set!");
 		return;
 	}
 	
 	get_time();
-	
-	clear_display();
 	
 	write_int_display(2000 + current_year);
 	write_str_display("-");
@@ -272,10 +272,16 @@ void set_clock(){
 	clear_display();
 	write_str_display("Time set!");
 	time_set = 1;
-}int calculate_clock_input(int input){	int input_tens = input / 10;
+}
+
+int calculate_clock_input(int input){
+	int input_tens = input / 10;
 	int input_ones = input % 10;
 	
-	return (input_tens << 4) | input_ones;}void get_time(){
+	return (input_tens << 4) | input_ones;
+}
+
+void get_time(){
 	i2c_start(RTC_WRITE);
 	i2c_write(0x00);
 	i2c_start(RTC_READ);
@@ -297,4 +303,4 @@ void set_clock(){
 	current_year = ((read_year & 0b11110000) >> 4) * 10 + (read_year & 0b00001111);
 	
 	i2c_stop();
-}
+}
